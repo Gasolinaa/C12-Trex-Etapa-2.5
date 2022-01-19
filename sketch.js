@@ -1,6 +1,6 @@
 var trex, trex_running, trex_collided;
 var ground, invisibleGround, groundImage;
-
+var cloudImage;
 
 
 
@@ -13,7 +13,7 @@ function preload(){
   
   groundImage = loadImage("ground2.png");
   
- 
+ cloudImage = loadImage("cloud.png")
   
 }
 
@@ -66,14 +66,22 @@ function draw() {
   
   //Gerar Nuvens
   spawnClouds()
-  
+  console.log("frame"+frameCount);
   drawSprites();
 }
 
-//função para gerar as nuvens
+
 function spawnClouds(){
- //escreva seu código aqui
- 
+if(frameCount%60===0){
+  cloud = createSprite(600,100,40,10);
+  cloud.addImage(cloudImage);
+  cloud.velocityX = -3; 
+  cloud.scale = 0.4;
+  cloud.y = Math.round(random(10,100))
+  trex.depth = cloud.depth;
+  trex.depth = trex.depth+1;
+}
+
 }
 
 
